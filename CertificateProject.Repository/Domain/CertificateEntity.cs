@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CertificateProject.Core.Models
+namespace CertificateProject.Core.Domain
 {
     public class CertificateEntity
     {

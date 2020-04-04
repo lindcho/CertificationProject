@@ -1,4 +1,4 @@
-﻿namespace CertificateProject.Core.Interfaces
+﻿namespace CertificateProject.Infrastructure.Repository
 {
     public class CertificateRepository
     {
