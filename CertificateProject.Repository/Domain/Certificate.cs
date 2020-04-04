@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.ComponentModel.DataAnnotations;
 
-namespace CertificateProject.Core.Models
+namespace CertificateProject.Core.Domain
 {
     public class Certificate
     {
+        [Key]
         public int Id { get; set; }
         public int SequenceNumber { get; set; }
         public DateTime IssueDate { get; set; }
