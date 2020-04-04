@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
-using CertificateProject.Core.Models;
+using CertificateProject.Core.Domain;
 
-namespace CertificateProject.Core.Repository
+namespace CertificateProject.Core.Interfaces
 {
     public interface ICertificateRepository
     {
         IEnumerable<CertificateEntity> GetAll();
         CertificateEntity GetById(int id);
-        void Insert(CertificateEntity employee);
-        void Update(CertificateEntity employee);
+        void Add (CertificateEntity certificateEntity);
+        void Edit(CertificateEntity certificateEntity);
         void Delete(int id);
         void Save();
 
