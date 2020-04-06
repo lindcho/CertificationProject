@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29920.165
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CertificateProject.Infrastructure", "CertificateProject.DAL\CertificateProject.Infrastructure.csproj", "{5E900252-561F-4989-97FB-7D6BA932F48F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CertificateProject.Infrastructure", "CertificateProject.Core\CertificateProject.Infrastructure.csproj", "{5E900252-561F-4989-97FB-7D6BA932F48F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CertificateProject.Core", "CertificateProject.Repository\CertificateProject.Core.csproj", "{B256854B-C782-4D6B-8FD8-B644D9095D0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CertificateProject.Core", "CertificateProject.Infrastructure\CertificateProject.Core.csproj", "{B256854B-C782-4D6B-8FD8-B644D9095D0E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CertificateProject.Test", "CertificateProject.Test\CertificateProject.Test.csproj", "{C41F949D-BEC0-4AA6-B6BF-401B95D20B0B}"
 EndProject

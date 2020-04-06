@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CertificateProject.Core.Domain;
 using CertificateProject.Core.Interfaces;
+using CertificateProject.Infrastructure.Entities;
 
 namespace CertificateProject.Web.Controllers
 {

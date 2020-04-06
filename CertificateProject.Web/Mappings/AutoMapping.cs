@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CertificateProject.Core.Domain;
+using CertificateProject.Infrastructure.Entities;
 
 namespace CertificateProject.Web.Mappings
 {
