@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using CertificateProject.Core.Domain;
+﻿using CertificateProject.Infrastructure.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace CertificateProject.Infrastructure
@@ -16,10 +13,11 @@ namespace CertificateProject.Infrastructure
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
             CertificateInitializer.Seed(modelBuilder);
         }
 
-        public DbSet<Certificate> Certificate { get; set; }
+        public DbSet<CertificateEntity> CertificateEntities { get; set; }
     }
 
 }

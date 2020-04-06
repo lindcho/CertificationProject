@@ -1,48 +1,61 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
 using CertificateProject.Core.Domain;
 using CertificateProject.Core.Interfaces;
+using CertificateProject.Infrastructure.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace CertificateProject.Infrastructure.Repository
 {
     public class CertificateRepository : ICertificateRepository
     {
-        private readonly CertificateContext _db;
+        private readonly CertificateContext _certificateContext;
+        private readonly IMapper _mapper;
 
-        public CertificateRepository(CertificateContext db)
+        public CertificateRepository(CertificateContext certificateContext, IMapper mapper)
         {
-            _db = db;
+            _certificateContext = certificateContext;
+            _mapper = mapper;
         }
 
         public IEnumerable<Certificate> GetAll()
         {
-            return _db.Certificate.ToList();
+            var certificateEntities = _certificateContext.CertificateEntities.ToList();
+            var certificates = _mapper.Map<IEnumerable<Certificate>>(certificateEntities);
+            return certificates;
         }
 
         public Certificate GetById(int id)
         {
-            var result = _db.Certificate.Find(id);
-            return result;
+            var certificateEntity = _certificateContext.CertificateEntities.Find(id);
+            var certificate = _mapper.Map<Certificate>(certificateEntity);
+            return certificate;
         }
 
         public void Add(Certificate certificate)
         {
-            _db.Certificate.Add(certificate);
-            _db.SaveChanges();
+            var certificateEntity = _mapper.Map<CertificateEntity>(certificate);
+
+            _certificateContext.CertificateEntities.Add(certificateEntity);
+            _certificateContext.SaveChanges();
         }
 
         public void Edit(Certificate certificate)
         {
-            _db.Entry(certificate).State = EntityState.Modified;
-            _db.SaveChanges();
+            var certificateEntity = _mapper.Map<CertificateEntity>(certificate);
+
+            _certificateContext.Entry(certificateEntity).State = EntityState.Modified;
+            _certificateContext.SaveChanges();
         }
 
         public void Delete(int id)
         {
             var certificate = GetById(id);
-            _db.Certificate.Remove(certificate);
-            _db.SaveChanges();
+            var certificateEntity = _mapper.Map<CertificateEntity>(certificate);
+
+            _certificateContext.CertificateEntities.Remove(certificateEntity);
+            _certificateContext.SaveChanges();
         }
 
     }

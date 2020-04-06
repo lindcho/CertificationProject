@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using CertificateProject.Core.Domain;
+using CertificateProject.Infrastructure.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace CertificateProject.Infrastructure
@@ -10,14 +11,14 @@ namespace CertificateProject.Infrastructure
     {
         public static void Seed(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Certificate>().HasData(
-                new Certificate
+            modelBuilder.Entity<CertificateEntity>().HasData(
+                new CertificateEntity
                 {
                     Id = 1,
                     SequenceNumber = 1110,
                     IssueDate = new DateTime(2020, 01, 20)
                 },
-                new Certificate
+                new CertificateEntity
                 {
                     Id = 2,
                     SequenceNumber = 1111,
