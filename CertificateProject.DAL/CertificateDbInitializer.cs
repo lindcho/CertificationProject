@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CertificateProject.Infrastructure
 {
-    public class CertificateDbInitializer
+    public class CertificateInitializer
     {
         public static void Seed(ModelBuilder modelBuilder)
         {

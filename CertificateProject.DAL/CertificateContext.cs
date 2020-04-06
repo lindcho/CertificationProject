@@ -11,11 +11,12 @@ namespace CertificateProject.Infrastructure
         public CertificateContext(DbContextOptions<CertificateContext> options)
             : base(options)
         {
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            CertificateDbInitializer.Seed(modelBuilder);
+            CertificateInitializer.Seed(modelBuilder);
         }
 
         public DbSet<Certificate> Certificate { get; set; }
