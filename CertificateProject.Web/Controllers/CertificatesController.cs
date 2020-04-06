@@ -1,31 +1,25 @@
-﻿using System.Collections.Generic;
-using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CertificateProject.Core.Domain;
 using CertificateProject.Core.Interfaces;
-using CertificateProject.Infrastructure.Entities;
 
 namespace CertificateProject.Web.Controllers
 {
     public class CertificatesController : Controller
     {
         private readonly ICertificateRepository _repository;
-        private readonly IMapper _mapper;
 
-        public CertificatesController(ICertificateRepository repository, IMapper mapper)
+        public CertificatesController(ICertificateRepository repository)
         {
             _repository = repository;
-            _mapper = mapper;
         }
 
         // GET: Certificates
         public IActionResult Index()
         {
             var certificates = _repository.GetAll();
-            var result = _mapper.Map<IEnumerable<CertificateEntity>>(certificates);
 
-            return View(result);
+            return View(certificates);
         }
 
         // GET: Certificates/Details/5
@@ -36,9 +30,7 @@ namespace CertificateProject.Web.Controllers
             {
                 return NotFound();
             }
-            var result = _mapper.Map<CertificateEntity>(certificate);
-
-            return View(result);
+            return View(certificate);
         }
 
         // GET: Certificates/Create
@@ -52,13 +44,12 @@ namespace CertificateProject.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Id,SequenceNumber,IssueDate,Document")] CertificateEntity certificate)
+        public IActionResult Create([Bind("Id,SequenceNumber,IssueDate,Document")] Certificate certificate)
         {
             if (ModelState.IsValid)
             {
-                var result = _mapper.Map<Certificate>(certificate);
 
-                _repository.Add(result);
+                _repository.Add(certificate);
                 return RedirectToAction(nameof(Index));
             }
             return View(certificate);
@@ -72,8 +63,7 @@ namespace CertificateProject.Web.Controllers
             {
                 return NotFound();
             }
-            var result = _mapper.Map<CertificateEntity>(certificate);
-            return View(result);
+            return View(certificate);
         }
 
         // POST: Certificates/Edit/5
@@ -81,7 +71,7 @@ namespace CertificateProject.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("Id,SequenceNumber,IssueDate,Document")] CertificateEntity certificate)
+        public IActionResult Edit(int id, [Bind("Id,SequenceNumber,IssueDate,Document")] Certificate certificate)
         {
             if (id != certificate.Id)
             {
@@ -91,8 +81,7 @@ namespace CertificateProject.Web.Controllers
             if (!ModelState.IsValid) return View(certificate);
             try
             {
-                var result = _mapper.Map<Certificate>(certificate);
-                _repository.Edit(result);
+                _repository.Edit(certificate);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -108,8 +97,7 @@ namespace CertificateProject.Web.Controllers
             {
                 return NotFound();
             }
-            var result = _mapper.Map<CertificateEntity>(certificate);
-            return View(result);
+            return View(certificate);
         }
 
         // POST: Certificates/Delete/5
