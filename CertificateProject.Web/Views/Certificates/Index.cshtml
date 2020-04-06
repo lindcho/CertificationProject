@@ -1,0 +1,53 @@
+﻿@model IEnumerable<CertificateProject.Core.Domain.CertificateEntity>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<h1>Certificates</h1>
+
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SequenceNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IssueDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Document)
+        </th>
+        <th>
+            Actions
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SequenceNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IssueDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Document)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { Controller = "Certificates", id = item.Id }, new { @class = "btn btn-default btn-xs" })
+
+                @Html.ActionLink("Edit", "Edit", new { Controller = "Certificates", id = item.Id }, new { @class = "btn btn-default btn-xs" })
+
+                @Html.ActionLink("Delete", "Delete",
+                    new { id = item.Id },
+                    new { @class = "btn btn-danger btn-xs"})
+            </td>
+        </tr>
+    }
+
+</table>
+
+@Html.ActionLink("New", "Create", new { Controller = "Certificates" }, new { @class = "btn btn-primary" })
