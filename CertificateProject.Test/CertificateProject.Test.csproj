@@ -17,9 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CertificateProject.Core\CertificateProject.Infrastructure.csproj" />
-    <ProjectReference Include="..\CertificateProject.DAL\CertificateProject.Infrastructure.csproj" />
     <ProjectReference Include="..\CertificateProject.Infrastructure\CertificateProject.Core.csproj" />
-    <ProjectReference Include="..\CertificateProject.Repository\CertificateProject.Core.csproj" />
   </ItemGroup>
 
 </Project>
