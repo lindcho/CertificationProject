@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using CertificateProject.Core.Domain;
 using CertificateProject.Infrastructure.Entities;
 using Microsoft.EntityFrameworkCore;
 

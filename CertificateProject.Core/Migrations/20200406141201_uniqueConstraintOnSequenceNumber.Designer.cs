@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CertificateProject.Infrastructure.Migrations
 {
     [DbContext(typeof(CertificateContext))]
-    [Migration("20200404191447_SetupAndSeedData")]
-    partial class SetupAndSeedData
+    [Migration("20200406141201_uniqueConstraintOnSequenceNumber")]
+    partial class uniqueConstraintOnSequenceNumber
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,7 +21,7 @@ namespace CertificateProject.Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("CertificateProject.Core.Domain.Certificate", b =>
+            modelBuilder.Entity("CertificateProject.Infrastructure.Entities.CertificateEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -39,7 +39,10 @@ namespace CertificateProject.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Certificate");
+                    b.HasIndex("SequenceNumber")
+                        .IsUnique();
+
+                    b.ToTable("CertificateEntities");
 
                     b.HasData(
                         new

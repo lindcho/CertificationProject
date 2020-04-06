@@ -13,6 +13,9 @@ namespace CertificateProject.Infrastructure
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<CertificateEntity>()
+                .HasIndex(q => q.SequenceNumber)
+                .IsUnique();
 
             CertificateInitializer.Seed(modelBuilder);
         }

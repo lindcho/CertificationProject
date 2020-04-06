@@ -19,7 +19,7 @@ namespace CertificateProject.Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("CertificateProject.Core.Domain.Certificate", b =>
+            modelBuilder.Entity("CertificateProject.Infrastructure.Entities.CertificateEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -37,7 +37,10 @@ namespace CertificateProject.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Certificate");
+                    b.HasIndex("SequenceNumber")
+                        .IsUnique();
+
+                    b.ToTable("CertificateEntities");
 
                     b.HasData(
                         new
