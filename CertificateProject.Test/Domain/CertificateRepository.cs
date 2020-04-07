@@ -14,10 +14,10 @@ namespace CertificateProject.Test.Domain
         public void GetAll_returns_a_list_of_the_existing_certificates()
         {
             var repository = new InMemoryCertificateRepository();
-            repository.Add(MakeCertificate(1, 2225));
-            repository.Add(MakeCertificate(2, 2226));
+            repository.AddCertificate(MakeCertificate(1, 2225));
+            repository.AddCertificate(MakeCertificate(2, 2226));
 
-            var certificates = repository.GetAll();
+            var certificates = repository.GetAllCertificates();
             var result = certificates;
 
             Assert.That(result.Count(), Is.EqualTo(2));

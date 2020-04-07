@@ -34,7 +34,7 @@ namespace CertificateProject.Test
         //[Ignore("need to manually run")]
         //public void IsRepositoryInitializedWithValidNumberOfData()
         //{
-        //    var result = _repo.GetAll();
+        //    var result = _repo.GetAllCertificates();
         //    Assert.IsNotNull(result);
         //    var numberOfRecords = result.ToList().Count;
         //    Assert.AreEqual(6, numberOfRecords);
@@ -50,8 +50,8 @@ namespace CertificateProject.Test
         //        IssueDate = DateTime.Now,
         //        Document = null
         //    };
-        //    _repo.Add(certificateToInsert);
-        //    var result = _repo.GetAll();
+        //    _repo.AddCertificate(certificateToInsert);
+        //    var result = _repo.GetAllCertificates();
         //    var numberOfRecords = result.ToList().Count;
         //    Assert.AreEqual(6, numberOfRecords);
         //}

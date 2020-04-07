@@ -19,21 +19,23 @@ namespace CertificateProject.Infrastructure.Repository
             _mapper = mapper;
         }
 
-        public IEnumerable<Certificate> GetAll()
+        public IEnumerable<Certificate> GetAllCertificates()
         {
             var certificateEntities = _certificateContext.CertificateEntities.ToList();
             var certificates = _mapper.Map<IEnumerable<Certificate>>(certificateEntities);
             return certificates;
         }
 
-        public Certificate GetById(int id)
+        public Certificate GetCertificateById(int id)
         {
             var certificateEntity = _certificateContext.CertificateEntities.Find(id);
+            if (certificateEntity == null) return null;
+
             var certificate = _mapper.Map<Certificate>(certificateEntity);
             return certificate;
         }
 
-        public void Add(Certificate certificate)
+        public void AddCertificate(Certificate certificate)
         {
             var certificateEntity = _mapper.Map<CertificateEntity>(certificate);
 
@@ -41,7 +43,7 @@ namespace CertificateProject.Infrastructure.Repository
             _certificateContext.SaveChanges();
         }
 
-        public void Edit(Certificate certificate)
+        public void UpdateCertificate(Certificate certificate)
         {
             var certificateEntity = _mapper.Map<CertificateEntity>(certificate);
 
@@ -49,9 +51,11 @@ namespace CertificateProject.Infrastructure.Repository
             _certificateContext.SaveChanges();
         }
 
-        public void Delete(int id)
+        public void DeleteCertificate(int id)
         {
-            var certificate = GetById(id);
+            var certificate = GetCertificateById(id);
+            if (certificate == null) return;
+
             var certificateEntity = _mapper.Map<CertificateEntity>(certificate);
 
             _certificateContext.CertificateEntities.Remove(certificateEntity);

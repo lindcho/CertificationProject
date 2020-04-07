@@ -17,7 +17,7 @@ namespace CertificateProject.Web.Controllers
         // GET: Certificates
         public IActionResult Index()
         {
-            var certificates = _repository.GetAll();
+            var certificates = _repository.GetAllCertificates();
 
             return View(certificates);
         }
@@ -25,7 +25,7 @@ namespace CertificateProject.Web.Controllers
         // GET: Certificates/Details/5
         public IActionResult Details(int id)
         {
-            var certificate = _repository.GetById(id);
+            var certificate = _repository.GetCertificateById(id);
             if (certificate == null)
             {
                 return NotFound();
@@ -49,16 +49,16 @@ namespace CertificateProject.Web.Controllers
             if (ModelState.IsValid)
             {
 
-                _repository.Add(certificate);
+                _repository.AddCertificate(certificate);
                 return RedirectToAction(nameof(Index));
             }
             return View(certificate);
         }
 
-        // GET: Certificates/Edit/5
+        // GET: Certificates/UpdateCertificate/5
         public IActionResult Edit(int id)
         {
-            var certificate = _repository.GetById(id);
+            var certificate = _repository.GetCertificateById(id);
             if (certificate == null)
             {
                 return NotFound();
@@ -66,7 +66,7 @@ namespace CertificateProject.Web.Controllers
             return View(certificate);
         }
 
-        // POST: Certificates/Edit/5
+        // POST: Certificates/UpdateCertificate/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -81,7 +81,7 @@ namespace CertificateProject.Web.Controllers
             if (!ModelState.IsValid) return View(certificate);
             try
             {
-                _repository.Edit(certificate);
+                _repository.UpdateCertificate(certificate);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -89,10 +89,10 @@ namespace CertificateProject.Web.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: Certificates/Delete/5
+        // GET: Certificates/DeleteCertificate/5
         public IActionResult Delete(int id)
         {
-            var certificate = _repository.GetById(id);
+            var certificate = _repository.GetCertificateById(id);
             if (certificate == null)
             {
                 return NotFound();
@@ -100,12 +100,12 @@ namespace CertificateProject.Web.Controllers
             return View(certificate);
         }
 
-        // POST: Certificates/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // POST: Certificates/DeleteCertificate/5
+        [HttpPost, ActionName("DeleteCertificate")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
-            _repository.Delete(id);
+            _repository.DeleteCertificate(id);
             return RedirectToAction(nameof(Index));
         }
 

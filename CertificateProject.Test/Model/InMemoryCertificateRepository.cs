@@ -11,31 +11,31 @@ namespace CertificateProject.Test.Model
     {
         private readonly IList<Certificate> _db = new List<Certificate>();
 
-        public void Add(Certificate certificate)
+        public void AddCertificate(Certificate certificate)
         {
             _db.Add(certificate);
         }
 
-        public void Delete(int id)
+        public void DeleteCertificate(int id)
         {
-            _db.Remove(GetById(id));
+            _db.Remove(GetCertificateById(id));
         }
 
-        public void Edit(Certificate certificate)
+        public void UpdateCertificate(Certificate certificate)
         {
             if (_db.Any(x => x.Id == certificate.Id))
             {
-                _db.Remove(GetById(certificate.Id));
+                _db.Remove(GetCertificateById(certificate.Id));
                 _db.Add(certificate);
             }
         }
 
-        public IEnumerable<Certificate> GetAll()
+        public IEnumerable<Certificate> GetAllCertificates()
         {
             return _db.ToList();
         }
 
-        public Certificate GetById(int id)
+        public Certificate GetCertificateById(int id)
         {
             return _db.FirstOrDefault(x => x.Id == id);
         }
